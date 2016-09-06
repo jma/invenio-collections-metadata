@@ -60,6 +60,7 @@ setup_requires = [
 
 install_requires = [
     'Flask-BabelEx>=0.9.2',
+    'invenio-collections>=1.0.0a1'
 ]
 
 packages = find_packages()
@@ -67,7 +68,8 @@ packages = find_packages()
 
 # Get the version string. Cannot be done with import!
 g = {}
-with open(os.path.join('invenio_collections_metadata', 'version.py'), 'rt') as fp:
+with open(os.path.join('invenio_collections_metadata',
+                       'version.py'), 'rt') as fp:
     exec(fp.read(), g)
     version = g['__version__']
 
@@ -87,10 +89,15 @@ setup(
     platforms='any',
     entry_points={
         'invenio_base.apps': [
-            'invenio_collections_metadata = invenio_collections_metadata:InvenioCollectionsMetadata',
+            'invenio_collections_metadata'
+            ' = invenio_collections_metadata:InvenioCollectionsMetadata',
         ],
         'invenio_i18n.translations': [
             'messages = invenio_collections_metadata',
+        ],
+        'invenio_db.models': [
+            'invenio_collections_metadata '
+            '= invenio_collections_metadata.models',
         ],
         # TODO: Edit these entry points to fit your needs.
         # 'invenio_access.actions': [],

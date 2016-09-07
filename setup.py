@@ -99,6 +99,11 @@ setup(
             'invenio_collections_metadata '
             '= invenio_collections_metadata.models',
         ],
+        'invenio_jsonschemas.schemas': [
+            'invenio_collections_metadata '
+            '= invenio_collections_metadata.schemas',
+        ],
+
         # TODO: Edit these entry points to fit your needs.
         # 'invenio_access.actions': [],
         # 'invenio_admin.actions': [],

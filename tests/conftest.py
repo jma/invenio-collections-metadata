@@ -39,7 +39,7 @@ from invenio_db import db as db_
 from invenio_db import InvenioDB
 from invenio_collections_metadata import InvenioCollectionsMetadata
 from invenio_collections_metadata.models import CollectionMetadata
-# from invenio_jsonschemas import InvenioJSONSchemas
+from invenio_jsonschemas import InvenioJSONSchemas
 from sqlalchemy_utils.functions import create_database, database_exists
 
 SAMPLE_DESCRIPTION = '''<p>
@@ -76,7 +76,7 @@ def app(request):
     InvenioDB(app_)
     InvenioCollections(app_)
     InvenioCollectionsMetadata(app_)
-    # InvenioJSONSchemas(app_)
+    InvenioJSONSchemas(app_)
     # (app_)
 
     with app_.app_context():
@@ -107,3 +107,27 @@ def collection_metadata(db):
     db.session.add(col_meta)
     db.session.commit()
     return col_meta
+
+
+@pytest.fixture()
+def data():
+    return {
+        'code': 'RERODOC.NAVDOCTYPE.BOOK',
+        'parent': 'RERODOC.NAVDOCTYPE',
+        'name': {
+            'en': 'Book',
+            'fr': 'Livres',
+            'de': 'Bücher'
+        },
+        'description': {
+            'en': 'A simple <strong>books</strong> collections.',
+            'fr': 'Une simple collection de <strong>livres</strong>.'
+        },
+        # 'thumbnail': {
+        #     'url': 'test'
+        # }
+        'thumbnail': {
+            'name': 'book.jpg',
+            'bucket': '12345678-1234-1234-1234-123456789012'
+        }
+    }

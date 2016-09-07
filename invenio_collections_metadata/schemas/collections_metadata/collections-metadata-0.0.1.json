@@ -1,0 +1,82 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "title": "CollectionMetadata schema.",
+    "description": "Describe information to display collections.",
+    "additionalProperties": false,
+    "required": [
+        "code",
+        "name",
+        "description",
+        "thumbnail"
+    ],
+    "properties": {
+        "code": {
+            "title": "Collection code",
+            "type": "string"
+        },
+        "query": {
+            "title": "Query to retrive records belonging collection.",
+            "type": "string"
+        },
+        "parent": {
+            "title": "Parent Collection code.",
+            "type": "string"
+        },
+        "name": {
+            "title": "Human readable collection code",
+            "type" : "object",
+            "properties": {
+                "fr": {
+                    "type": "string"
+                },
+                "en": {
+                    "type": "string"
+                },
+                "it": {
+                    "type": "string"
+                },
+                "de": {
+                    "type": "string"
+                }
+            }
+        },
+        "description": {
+            "title": "Collection descriptions.",
+            "type" : "object",
+            "properties": {
+                "fr": {
+                    "type": "string"
+                },
+                "en": {
+                    "type": "string"
+                },
+                "it": {
+                    "type": "string"
+                },
+                "de": {
+                    "type": "string"
+                }
+            }
+        },
+        "thumbnail": {
+            "type" : "object",
+            "oneOf" : [
+                {"required": ["url"]},
+                {"required": ["name", "bucket"]}
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "bucket": {
+                    "title": "Bucket UUID",
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

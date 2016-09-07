@@ -29,4 +29,12 @@
 #     -e git+git://github.com/mitsuhiko/jinja2.git#egg=Jinja2
 
 -e git+git://github.com/inveniosoftware/invenio-collections.git#egg=invenio-collections
+-e git+git://github.com/inveniosoftware/invenio-jsonschemas.git#egg=invenio-jsonschemas
 ipython
+Flask-Babel
+konch
+pytest-cache
+pytest-cov
+pytest-pep8
+pytest
+

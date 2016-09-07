@@ -37,12 +37,26 @@ Run example development server:
 
 from __future__ import absolute_import, print_function
 
+import os
+
 from flask import Flask
 from flask_babelex import Babel
 
+from invenio_collections import InvenioCollections
 from invenio_collections_metadata import InvenioCollectionsMetadata
+from invenio_db import InvenioDB
 
 # Create Flask application
 app = Flask(__name__)
+app.config.update(
+    SECRET_KEY='CHANGE_ME',
+    SQLALCHEMY_DATABASE_URI=os.environ.get(
+        'SQLALCHEMY_DATABASE_URI', 'sqlite://'),
+    SQLALCHEMY_TRACK_MODIFICATIONS=True,
+    TESTING=True,
+)
 Babel(app)
+    # instance_path = tempfile.mkdtemp()
+InvenioDB(app)
+InvenioCollections(application)
 InvenioCollectionsMetadata(app)
